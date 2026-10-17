@@ -10,6 +10,6 @@ router.use(protectRoute);
 router.get("/users", getUserForSidebar);
 router.get("/conversations", getConversationsForSidebar);
 router.get("/:id", getMessages);
-router.post("send.:id", upload.single("media") , sendMessage);
+router.post("/send/:id", upload.single("media"), sendMessage);
 
 export default router;

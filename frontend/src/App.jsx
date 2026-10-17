@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { WallpaperProvider } from "./context/WallpaperContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Navigate, Route, Routes } from "react-router";
