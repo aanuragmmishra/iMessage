@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import { hasImageKitConfig } from "../lib/imagekit.js";
+import { getReceiverSocketId } from "../lib/socket.js";
 
 export async function getUserForSidebar(req,res,next){
     try {
@@ -93,6 +94,12 @@ export async function sendMessage(req, res) {
     });
 
     await newMessage.save();
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+
+    if(receiverSocketId){
+        io.to(receiverSocketId).emit("newMessage" , newMessage)
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {
