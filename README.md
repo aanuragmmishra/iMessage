@@ -335,10 +335,10 @@ IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
 # Public Clerk key used by the frontend
 VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
-# Optional API base override.
-# Leave unset for the frontend's development default (http://localhost:3000/api).
-# In production, an empty value lets the app call /api on the same host.
-VITE_API_URL=
+# API base is currently selected in frontend/src/lib/axios.js:
+# development -> http://localhost:3000/api
+# production  -> /api on the same host
+# VITE_API_URL is not currently wired into the Axios configuration.
 ```
 
 **Important configuration notes**
@@ -708,7 +708,7 @@ These theme, wallpaper, and sound preferences are client-side settings; they do 
 - Confirm the backend is running on port `3000` in local development.
 - Confirm `FRONTEND_URL=http://localhost:5173` in the backend environment.
 - Check the browser's Network tab for the failing request and inspect the backend terminal.
-- The frontend uses `http://localhost:3000/api` as its development API base unless overridden.
+- The frontend currently selects its API base in `frontend/src/lib/axios.js`: development uses `http://localhost:3000/api`, while production uses `/api` on the same host. `VITE_API_URL` is not currently read by the Axios configuration.
 
 ### 3. Clerk sign-in works but chat says the profile is missing
 - Check the Clerk webhook configuration.
